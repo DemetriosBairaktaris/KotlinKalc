@@ -61,26 +61,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onDigit(view: View) {
-        handleCurrentState()
-        val button = view as Button
-        this.addInput(button.text as String)
+        this.onInputButtonPress(view)
     }
 
     fun onOperator(view: View) {
-        handleCurrentState()
-        val button = view as Button
-        this.addInput(button.text as String)
+        this.onInputButtonPress(view)
     }
 
     fun onDecimalPoint(view: View) {
+        this.onInputButtonPress(view)
+    }
+
+    fun onInputButtonPress(view: View){
         handleCurrentState()
         val button = view as Button
         this.addInput(button.text as String)
     }
 
     fun onEqual(view: View) {
-        val textview = getTextField()
-        val text = textview.text.toString()
+        val textView = getTextField()
+        val text = textView.text.toString()
         val result: Double
 
         try {
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         } catch (e: IllegalArgumentException) {
             this.setState(this.errorState)
             displayErrorText()
-        }catch (e: ArithmeticException){
+        } catch (e: ArithmeticException){
             this.setState(this.errorState)
             displayErrorText()
         }
